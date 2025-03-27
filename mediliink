@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Consultation Steps</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        label {
+            font-size: 1.1em;
+            margin: 10px 0;
+            display: block;
+        }
+        input[type="text"], input[type="number"], textarea, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .symptoms {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pre-Consultation Health Check</h1>
+        <form id="preConsultationForm">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" name="temperature" step="0.1" placeholder="Enter temperature" required>
+
+            <label for="bloodPressure">Blood Pressure (mmHg):</label>
+            <input type="text" id="bloodPressure" name="bloodPressure" placeholder="Enter blood pressure (e.g., 120/80)" required>
+
+            <div class="symptoms">
+                <label for="symptoms">Symptoms (if any):</label>
+                <textarea id="symptoms" name="symptoms" rows="4" placeholder="List any symptoms (e.g., headache, fatigue)" required></textarea>
+            </div>
+
+            <input type="submit" value="Submit Pre-Consultation">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('preConsultationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const temperature = document.getElementById('temperature').value;
+            const bloodPressure = document.getElementById('bloodPressure').value;
+            const symptoms = document.getElementById('symptoms').value;
+
+            // Here you can add logic to process the form data or send it to a server
+            alert(`Pre-consultation submitted:
+            Temperature: ${temperature}°C
+            Blood Pressure: ${bloodPressure} mmHg
+            Symptoms: ${symptoms}`);
+        });
+    </script>
+</body>
+</html>
