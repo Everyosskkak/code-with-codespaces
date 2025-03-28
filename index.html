@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Work Sans', sans-serif;
-            background: linear-gradient(135deg, #005F73, #94D2BD);
+            font-family: 'Roboto', sans-serif;
+            background: #f1f8f7;
             margin: 0;
             padding: 0;
             display: flex;
@@ -21,70 +21,69 @@
             width: 100%;
             max-width: 600px;
             background: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             text-align: center;
             animation: fadeIn 1s ease-in-out;
         }
         h1 {
-            color: #006D77;
-            font-size: 2.2em;
+            color: #2C3E50;
+            font-size: 2.4em;
             margin-bottom: 20px;
             font-weight: 600;
         }
         label {
             font-size: 1.1em;
+            color: #2C3E50;
             text-align: left;
             display: block;
             margin-bottom: 10px;
-            color: #333;
         }
         input[type="number"], input[type="text"], textarea, input[type="submit"], button {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #B2BEB5;
+            padding: 14px;
+            margin: 12px 0;
+            border: 2px solid #BDC3C7;
             border-radius: 8px;
-            box-sizing: border-box;
             font-size: 1em;
             transition: border-color 0.3s;
-            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
         }
         input[type="number"]:focus, input[type="text"]:focus, textarea:focus {
-            border-color: #006D77;
+            border-color: #1ABC9C;
             outline: none;
         }
         input[type="submit"], button {
-            background-color: #006D77;
+            background-color: #1ABC9C;
             color: white;
-            border: none;
             font-size: 1.2em;
             cursor: pointer;
+            padding: 16px 0;
+            border: none;
+            border-radius: 8px;
             transition: background-color 0.3s;
-            padding: 14px 0;
-            margin-top: 20px;
         }
         input[type="submit"]:hover, button:hover {
-            background-color: #004E5C;
+            background-color: #16A085;
         }
         textarea {
             resize: vertical;
-            height: 120px;
+            height: 140px;
         }
         .instructions {
             text-align: left;
             margin-top: 30px;
-            background-color: #f1f1f1;
+            background-color: #ECF0F1;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             display: none;
         }
         .footer {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 0.9em;
-            color: #888;
+            color: #7F8C8D;
         }
         @keyframes fadeIn {
             from {
@@ -121,15 +120,15 @@
         <div class="instructions" id="instructions">
             <h3>Next Steps:</h3>
             <ul>
-                <li><strong>Where to see your nurse:</strong> Visit the Nurse's Station on the second floor.</li>
+                <li><strong>Where to see your nurse:</strong> Head to the Nurse's Station on the second floor.</li>
                 <li><strong>Nurse Name:</strong> Nurse Jessica Lee</li>
-                <li><strong>Where to get your tests:</strong> The lab is located on the first floor near the main entrance.</li>
+                <li><strong>Where to get your tests:</strong> The laboratory is located on the first floor near the main entrance.</li>
                 <li><strong>Your assigned checkup station:</strong> Checkup Station 3 on the third floor.</li>
             </ul>
         </div>
 
         <div class="footer">
-            <p>Powered by HealthApp</p>
+            <p>Powered by HealthTech Solutions</p>
         </div>
     </div>
 
@@ -141,13 +140,10 @@
             const bloodPressure = document.getElementById('bloodPressure').value;
             const symptoms = document.getElementById('symptoms').value;
 
-            // Alert the user with the pre-consultation data
-            alert(`Pre-consultation submitted:
-            Temperature: ${temperature}°C
-            Blood Pressure: ${bloodPressure} mmHg
-            Symptoms: ${symptoms}`);
+            // Display a confirmation alert with the user's input
+            alert(`Pre-consultation submitted:\nTemperature: ${temperature}°C\nBlood Pressure: ${bloodPressure} mmHg\nSymptoms: ${symptoms}`);
 
-            // Show the "Next Steps" button and instructions
+            // Display the "Next Steps" button after submission
             document.getElementById('nextStepsButton').style.display = 'block';
         });
 
