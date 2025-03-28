@@ -82,100 +82,8 @@
                 transform: translateY(0);
             }
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Pre-Consultation Health Check</h1>
-        <form id="preConsultationForm">
-            <label for="temperature">Temperature (°C):</label>
-            <input type="number" id="temperature" name="temperature" step="0.1" placeholder="Enter temperature" required>
-
-            <label for="bloodPressure">Blood Pressure (mmHg):</label>
-            <input type="text" id="bloodPressure" name="bloodPressure" placeholder="Enter blood pressure (e.g., 120/80)" required>
-
-            <div class="symptoms">
-                <label for="symptoms">Symptoms (if any):</label>
-                <textarea id="symptoms" name="symptoms" placeholder="List any symptoms (e.g., headache, fatigue)" required></textarea>
-            </div>
-
-            <input type="submit" value="Submit Pre-Consultation">
-        </form>
-    </div>
-
-    <div class="footer">
-        <p>Powered by HealthTech Solutions</p>
-    </div>
-
-    <script>
-        document.getElementById('preConsultationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const temperature = document.getElementById('temperature').value;
-            const bloodPressure = document.getElementById('bloodPressure').value;
-            const symptoms = document.getElementById('symptoms').value;
-
-            // Random health condition message (funny)
-            const conditionMessages = [
-                "You're absolutely fine! Maybe just a little too much caffeine?",
-                "Hmm... Could be a case of too much Netflix and not enough water.",
-                "Your health is like a well-oiled machine. Keep it up!",
-                "Well, looks like you're living on the edge... but in a good way!",
-                "Maybe lay off the pizza? But hey, no judgment here!"
-            ];
-
-            const randomMessage = conditionMessages[Math.floor(Math.random() * conditionMessages.length)];
-
-            // Store form data in sessionStorage and redirect to the next page
-            sessionStorage.setItem('temperature', temperature);
-            sessionStorage.setItem('bloodPressure', bloodPressure);
-            sessionStorage.setItem('symptoms', symptoms);
-            sessionStorage.setItem('conditionMessage', randomMessage);
-
-            window.location.href = "next-steps.html";
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next Steps: Health Check</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: #f1f8f7;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            animation: fadeIn 1s ease-in-out;
-        }
-        h1 {
-            color: #2C3E50;
-            font-size: 2.4em;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #34495E;
+        .next-steps {
+            display: none;
         }
         .instructions {
             text-align: left;
@@ -198,65 +106,85 @@
         button:hover {
             background-color: #16A085;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Next Steps: Health Check</h1>
-        
-        <p id="conditionMessage"></p>
-        
-        <div class="instructions">
-            <h3>Instructions:</h3>
-            <ul>
-                <li><strong>Where to see your nurse:</strong> Head to Room 104, located on the second floor.</li>
-                <li><strong>Nurse Name:</strong> Nurse Sarah Parker</li>
-                <li><strong>Where to get your tests:</strong> Laboratory on the first floor near the elevator.</li>
-                <li><strong>Your assigned checkup station:</strong> Checkup Station 5 on the third floor.</li>
-            </ul>
+        <div id="preConsultationForm">
+            <h1>Pre-Consultation Health Check</h1>
+            <form>
+                <label for="temperature">Temperature (°C):</label>
+                <input type="number" id="temperature" name="temperature" step="0.1" placeholder="Enter temperature" required>
+
+                <label for="bloodPressure">Blood Pressure (mmHg):</label>
+                <input type="text" id="bloodPressure" name="bloodPressure" placeholder="Enter blood pressure (e.g., 120/80)" required>
+
+                <div class="symptoms">
+                    <label for="symptoms">Symptoms (if any):</label>
+                    <textarea id="symptoms" name="symptoms" placeholder="List any symptoms (e.g., headache, fatigue)" required></textarea>
+                </div>
+
+                <input type="submit" value="Submit Pre-Consultation">
+            </form>
         </div>
-        
-        <button onclick="goBack()">Go Back</button>
+
+        <div id="nextSteps" class="next-steps">
+            <h1>Next Steps: Health Check</h1>
+            <p id="conditionMessage"></p>
+
+            <div class="instructions">
+                <h3>Instructions:</h3>
+                <ul>
+                    <li><strong>Where to see your nurse:</strong> Head to <span id="room"></span>, located on the second floor.</li>
+                    <li><strong>Nurse Name:</strong> <span id="nurseName"></span></li>
+                    <li><strong>Where to get your tests:</strong> Laboratory on the first floor near the elevator.</li>
+                    <li><strong>Your assigned checkup station:</strong> <span id="checkupStation"></span> on the third floor.</li>
+                </ul>
+            </div>
+            
+            <button onclick="goBack()">Go Back</button>
+        </div>
     </div>
 
     <script>
-        window.onload = function() {
-            // Retrieve data from sessionStorage
-            const conditionMessage = sessionStorage.getItem('conditionMessage');
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const temperature = document.getElementById('temperature').value;
+            const bloodPressure = document.getElementById('bloodPressure').value;
+            const symptoms = document.getElementById('symptoms').value;
+
+            // Random health condition message (funny)
+            const conditionMessages = [
+                "You're absolutely fine! Maybe just a little too much caffeine?",
+                "Hmm... Could be a case of too much Netflix and not enough water.",
+                "Your health is like a well-oiled machine. Keep it up!",
+                "Well, looks like you're living on the edge... but in a good way!",
+                "Maybe lay off the pizza? But hey, no judgment here!"
+            ];
+
+            const randomMessage = conditionMessages[Math.floor(Math.random() * conditionMessages.length)];
+
+            // Random nurse, room, and checkup station
             const nurseNames = ["Sarah Parker", "Jessica Lee", "John Smith", "Emily Clark", "David Jones"];
-            const randomNurse = nurseNames[Math.floor(Math.random() * nurseNames.length)];
-            
-            // Randomized room and checkup station
             const rooms = ["Room 104", "Room 202", "Room 305"];
             const checkupStations = ["Station 1", "Station 3", "Station 5"];
 
-            // Display the condition message and randomized details
-            document.getElementById('conditionMessage').innerText = conditionMessage;
+            // Display the next steps section and hide the form
+            document.getElementById('preConsultationForm').style.display = 'none';
+            document.getElementById('nextSteps').style.display = 'block';
 
-            // Randomized details
-            document.querySelector(".instructions").innerHTML = `
-                <h3>Instructions:</h3>
-                <ul>
-                    <li><strong>Where to see your nurse:</strong> Head to ${rooms[Math.floor(Math.random() * rooms.length)]}, located on the second floor.</li>
-                    <li><strong>Nurse Name:</strong> ${randomNurse}</li>
-                    <li><strong>Where to get your tests:</strong> Laboratory on the first floor near the elevator.</li>
-                    <li><strong>Your assigned checkup station:</strong> ${checkupStations[Math.floor(Math.random() * checkupStations.length)]} on the third floor.</li>
-                </ul>
-            `;
-        };
+            // Set the randomized and submitted data to the next steps page
+            document.getElementById('conditionMessage').innerText = randomMessage;
+            document.getElementById('nurseName').innerText = nurseNames[Math.floor(Math.random() * nurseNames.length)];
+            document.getElementById('room').innerText = rooms[Math.floor(Math.random() * rooms.length)];
+            document.getElementById('checkupStation').innerText = checkupStations[Math.floor(Math.random() * checkupStations.length)];
+        });
 
         function goBack() {
-            window.location.href = "index.html"; // Redirect to the main page
+            // Reset the page to show the form again
+            document.getElementById('nextSteps').style.display = 'none';
+            document.getElementById('preConsultationForm').style.display = 'block';
         }
     </script>
 </body>
