@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f0f4f8;
+            background: #ecf0f1;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,11 +16,11 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            color: #34495e;
+            color: #2c3e50;
         }
         .container {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             background: #ffffff;
             padding: 40px;
             border-radius: 12px;
@@ -34,28 +34,6 @@
             color: #1abc9c;
             font-weight: 600;
             letter-spacing: 2px;
-        }
-        h3 {
-            font-size: 1.3em;
-            color: #2c3e50;
-            margin: 20px 0;
-        }
-        .step {
-            background: #ecf0f1;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.1em;
-        }
-        .step span {
-            background: #1abc9c;
-            color: white;
-            padding: 8px;
-            border-radius: 50%;
-            font-weight: 600;
         }
         label {
             font-size: 1.1em;
@@ -164,8 +142,7 @@
     <div class="container">
         <div id="preConsultationForm">
             <h1>Pre-Consultation Health Check</h1>
-            <form id="consultationForm">
-                
+            <form>
                 <label for="temperature">Temperature (°C):</label>
                 <input type="number" id="temperature" name="temperature" step="0.1" placeholder="Enter temperature" required>
 
@@ -173,7 +150,7 @@
                 <input type="text" id="bloodPressure" name="bloodPressure" placeholder="Enter blood pressure (e.g., 120/80)" required>
 
                 <div class="symptoms">
-                    
+                    <label for="symptoms">Symptoms (if any):</label>
                     <textarea id="symptoms" name="symptoms" placeholder="List any symptoms (e.g., headache, fatigue)" required></textarea>
                 </div>
 
@@ -187,26 +164,20 @@
 
             <div class="instructions">
                 <h3>Instructions:</h3>
-                <div class="step">
-                    <span>1</span>
-                    <p>Go to <strong>A</strong> to check your blood pressure</p>
-                </div>
-                <div class="step">
-                    <span>2</span>
-                    <p>Proceed to <strong>B</strong> to check your temperature</p>
-                </div>
-                <div class="step">
-                    <span>3</span>
-                    <p>Visit <strong>C</strong> for a quick checkup of any symptoms</p>
-                </div>
+                <ul>
+                    <li><strong>Where to see your nurse:</strong> Head to <span id="room"></span>, located on the second floor.</li>
+                    <li><strong>Nurse Name:</strong> <span id="nurseName"></span></li>
+                    <li><strong>Where to get your tests:</strong> Laboratory on the first floor near the elevator.</li>
+                    <li><strong>Your assigned checkup station:</strong> <span id="checkupStation"></span> on the third floor.</li>
+                </ul>
             </div>
-
+            
             <button onclick="goBack()">Go Back</button>
         </div>
     </div>
 
     <script>
-        document.getElementById('consultationForm').addEventListener('submit', function(event) {
+        document.querySelector('form').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const temperature = document.getElementById('temperature').value;
@@ -224,12 +195,20 @@
 
             const randomMessage = conditionMessages[Math.floor(Math.random() * conditionMessages.length)];
 
+            // Random nurse, room, and checkup station
+            const nurseNames = ["Sarah Parker", "Jessica Lee", "John Smith", "Emily Clark", "David Jones"];
+            const rooms = ["Room 104", "Room 202", "Room 305"];
+            const checkupStations = ["Station 1", "Station 3", "Station 5"];
+
             // Display the next steps section and hide the form
             document.getElementById('preConsultationForm').style.display = 'none';
             document.getElementById('nextSteps').style.display = 'block';
 
             // Set the randomized and submitted data to the next steps page
             document.getElementById('conditionMessage').innerText = randomMessage;
+            document.getElementById('nurseName').innerText = nurseNames[Math.floor(Math.random() * nurseNames.length)];
+            document.getElementById('room').innerText = rooms[Math.floor(Math.random() * rooms.length)];
+            document.getElementById('checkupStation').innerText = checkupStations[Math.floor(Math.random() * checkupStations.length)];
         });
 
         function goBack() {
@@ -240,3 +219,4 @@
     </script>
 </body>
 </html>
+
