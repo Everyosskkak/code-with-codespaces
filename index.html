@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pre-Consultation Health Check</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background: #f1f8f7;
+            font-family: 'Poppins', sans-serif;
+            background: #ecf0f1;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,6 +16,7 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            color: #2c3e50;
         }
         .container {
             width: 100%;
@@ -28,17 +29,19 @@
             animation: fadeIn 1s ease-in-out;
         }
         h1 {
-            color: #2C3E50;
-            font-size: 2.4em;
+            font-size: 2.5em;
             margin-bottom: 20px;
+            color: #1abc9c;
             font-weight: 600;
+            letter-spacing: 2px;
         }
         label {
             font-size: 1.1em;
-            color: #2C3E50;
+            color: #34495e;
             text-align: left;
             display: block;
             margin-bottom: 10px;
+            font-weight: 500;
         }
         input[type="number"], input[type="text"], textarea, input[type="submit"] {
             width: 100%;
@@ -46,16 +49,17 @@
             margin: 12px 0;
             border: 2px solid #BDC3C7;
             border-radius: 8px;
-            font-size: 1em;
+            font-size: 1.1em;
             transition: border-color 0.3s;
             box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
         }
         input[type="number"]:focus, input[type="text"]:focus, textarea:focus {
-            border-color: #1ABC9C;
+            border-color: #1abc9c;
             outline: none;
         }
         input[type="submit"] {
-            background-color: #1ABC9C;
+            background-color: #1abc9c;
             color: white;
             font-size: 1.2em;
             cursor: pointer;
@@ -63,9 +67,10 @@
             border: none;
             border-radius: 8px;
             transition: background-color 0.3s;
+            font-weight: 600;
         }
         input[type="submit"]:hover {
-            background-color: #16A085;
+            background-color: #16a085;
         }
         .footer {
             margin-top: 30px;
@@ -88,13 +93,13 @@
         .instructions {
             text-align: left;
             margin-top: 30px;
-            background-color: #ECF0F1;
+            background-color: #f8f9fa;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
         button {
-            background-color: #1ABC9C;
+            background-color: #1abc9c;
             color: white;
             font-size: 1.2em;
             cursor: pointer;
@@ -104,13 +109,32 @@
             transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #16A085;
+            background-color: #16a085;
         }
         #conditionMessage {
-            font-size: 1.8em; /* Make message larger */
-            font-weight: 600;
-            color: #E74C3C; /* Make the message color stand out */
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #e74c3c;
             margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Animation for the health condition message */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                color: #e74c3c;
+            }
+            50% {
+                transform: scale(1.1);
+                color: #f39c12;
+            }
+            100% {
+                transform: scale(1);
+                color: #e74c3c;
+            }
         }
     </style>
 </head>
@@ -162,11 +186,11 @@
 
             // Random health condition message (funny)
             const conditionMessages = [
-                "You're absolutely fine! Maybe just a little too much caffeine?",
-                "Hmm... Could be a case of too much Netflix and not enough water.",
-                "Your health is like a well-oiled machine. Keep it up!",
-                "Well, looks like you're living on the edge... but in a good way!",
-                "Maybe lay off the pizza? But hey, no judgment here!"
+                "You seem to be in perfect health! Maybe just a little too much caffeine?",
+                "A little tired? Maybe it's time for some rest, your body will thank you later!",
+                "You’re absolutely fine—probably just need a nice, relaxing weekend.",
+                "Well, you seem to be in tip-top shape, but we recommend less screen time!",
+                "Perhaps lay off the pizza, but hey, who am I to judge?"
             ];
 
             const randomMessage = conditionMessages[Math.floor(Math.random() * conditionMessages.length)];
