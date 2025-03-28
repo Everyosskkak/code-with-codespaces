@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pre-Consultation Health Check</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, #005F73, #94D2BD);
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,50 +19,54 @@
         }
         .container {
             width: 100%;
-            max-width: 500px;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             animation: fadeIn 1s ease-in-out;
         }
         h1 {
-            color: #4CAF50;
-            font-size: 1.8em;
+            color: #006D77;
+            font-size: 2.2em;
             margin-bottom: 20px;
+            font-weight: 600;
         }
         label {
-            font-size: 1.2em;
+            font-size: 1.1em;
             text-align: left;
             display: block;
             margin-bottom: 10px;
+            color: #333;
         }
-        input[type="number"], input[type="text"], textarea, input[type="submit"] {
+        input[type="number"], input[type="text"], textarea, input[type="submit"], button {
             width: 100%;
             padding: 12px;
-            margin: 8px 0;
-            border: 2px solid #ccc;
-            border-radius: 6px;
+            margin: 10px 0;
+            border: 2px solid #B2BEB5;
+            border-radius: 8px;
             box-sizing: border-box;
             font-size: 1em;
             transition: border-color 0.3s;
+            font-family: 'Roboto', sans-serif;
         }
         input[type="number"]:focus, input[type="text"]:focus, textarea:focus {
-            border-color: #4CAF50;
+            border-color: #006D77;
             outline: none;
         }
-        input[type="submit"] {
-            background-color: #4CAF50;
+        input[type="submit"], button {
+            background-color: #006D77;
             color: white;
             border: none;
             font-size: 1.2em;
             cursor: pointer;
             transition: background-color 0.3s;
             padding: 14px 0;
+            margin-top: 20px;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        input[type="submit"]:hover, button:hover {
+            background-color: #004E5C;
         }
         textarea {
             resize: vertical;
@@ -70,17 +75,17 @@
         .instructions {
             text-align: left;
             margin-top: 30px;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 6px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: none;
         }
         .footer {
             margin-top: 20px;
             font-size: 0.9em;
             color: #888;
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -111,7 +116,9 @@
             <input type="submit" value="Submit Pre-Consultation">
         </form>
 
-        <div class="instructions">
+        <button id="nextStepsButton" style="display:none;">Next Steps</button>
+
+        <div class="instructions" id="instructions">
             <h3>Next Steps:</h3>
             <ul>
                 <li><strong>Where to see your nurse:</strong> Visit the Nurse's Station on the second floor.</li>
@@ -134,12 +141,20 @@
             const bloodPressure = document.getElementById('bloodPressure').value;
             const symptoms = document.getElementById('symptoms').value;
 
-            // Here you can add logic to process the form data or send it to a server
+            // Alert the user with the pre-consultation data
             alert(`Pre-consultation submitted:
             Temperature: ${temperature}°C
             Blood Pressure: ${bloodPressure} mmHg
             Symptoms: ${symptoms}`);
+
+            // Show the "Next Steps" button and instructions
+            document.getElementById('nextStepsButton').style.display = 'block';
+        });
+
+        document.getElementById('nextStepsButton').addEventListener('click', function() {
+            document.getElementById('instructions').style.display = 'block';
         });
     </script>
 </body>
 </html>
+
