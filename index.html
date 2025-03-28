@@ -1,46 +1,95 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pre-Consultation Steps</title>
+    <title>Pre-Consultation Health Check</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
         }
         h1 {
-            text-align: center;
             color: #4CAF50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
         }
         label {
-            font-size: 1.1em;
-            margin: 10px 0;
+            font-size: 1.2em;
+            text-align: left;
             display: block;
+            margin-bottom: 10px;
         }
-        input[type="text"], input[type="number"], textarea, input[type="submit"] {
+        input[type="number"], input[type="text"], textarea, input[type="submit"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus, input[type="text"]:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
         }
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
+            border: none;
+            font-size: 1.2em;
             cursor: pointer;
+            transition: background-color 0.3s;
+            padding: 14px 0;
         }
-        .symptoms {
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+        .instructions {
+            text-align: left;
+            margin-top: 30px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .footer {
             margin-top: 20px;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -56,11 +105,25 @@
 
             <div class="symptoms">
                 <label for="symptoms">Symptoms (if any):</label>
-                <textarea id="symptoms" name="symptoms" rows="4" placeholder="List any symptoms (e.g., headache, fatigue)" required></textarea>
+                <textarea id="symptoms" name="symptoms" placeholder="List any symptoms (e.g., headache, fatigue)" required></textarea>
             </div>
 
             <input type="submit" value="Submit Pre-Consultation">
         </form>
+
+        <div class="instructions">
+            <h3>Next Steps:</h3>
+            <ul>
+                <li><strong>Where to see your nurse:</strong> Visit the Nurse's Station on the second floor.</li>
+                <li><strong>Nurse Name:</strong> Nurse Jessica Lee</li>
+                <li><strong>Where to get your tests:</strong> The lab is located on the first floor near the main entrance.</li>
+                <li><strong>Your assigned checkup station:</strong> Checkup Station 3 on the third floor.</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>Powered by HealthApp</p>
+        </div>
     </div>
 
     <script>
